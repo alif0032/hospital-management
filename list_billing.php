@@ -1,0 +1,28 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "hospital_db");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM billing";
+$result = $conn->query($sql);
+
+echo "<h2>All Bills</h2>";
+echo "<table border='1' cellpadding='5'>";
+echo "<tr><th>ID</th><th>PatientID</th><th>Amount</th><th>Bill Date</th></tr>";
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>".$row['BillID']."</td>
+                <td>".$row['PatientID']."</td>
+                <td>".$row['Amount']."</td>
+                <td>".$row['BillDate']."</td>
+              </tr>";
+    }
+} else {
+    echo "<tr><td colspan='4'>No bills found</td></tr>";
+}
+echo "</table>";
+$conn->close();
+?>

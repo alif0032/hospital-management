@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Billing</title></head>
+<body>
+<h2>Add Billing</h2>
+<form action="insert_billing.php" method="post">
+    Patient:
+    <select name="patientid">
+        <?php
+        $conn = mysqli_connect("localhost","root","","hospital_db");
+        $result = mysqli_query($conn,"SELECT PatientID, Name FROM Patient");
+        while($row=mysqli_fetch_assoc($result)){
+            echo "<option value='".$row['PatientID']."'>".$row['Name']."</option>";
+        }
+        mysqli_close($conn);
+        ?>
+    </select><br>
+    Amount: <input type="number" step="0.01" name="amount"><br>
+    Date: <input type="date" name="date"><br>
+    <input type="submit" value="Add Billing">
+</form>
+<a href="index.html">Back to Home</a>
+</body>
+</html>
