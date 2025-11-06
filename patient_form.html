@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Patient</title>
+</head>
+<body>
+<h2>Add Patient</h2>
+<form action="insert_patient.php" method="post">
+    Name: <input type="text" name="name" required><br>
+    DOB: <input type="date" name="dob" required><br>
+    Gender: 
+    <select name="gender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br>
+    Contact: <input type="text" name="contact" required><br>
+    <input type="submit" value="Add Patient">
+</form>
+<a href="index.html">Back to Home</a>
+</body>
+</html>
