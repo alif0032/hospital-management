@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Appointment</title></head>
+<body>
+<h2>Add Appointment</h2>
+<form action="insert_appointment.php" method="post">
+    Patient:
+    <select name="patientid">
+        <?php
+        $conn = mysqli_connect("localhost","root","","hospital_db");
+        $result = mysqli_query($conn,"SELECT PatientID, Name FROM Patient");
+        while($row=mysqli_fetch_assoc($result)){
+            echo "<option value='".$row['PatientID']."'>".$row['Name']."</option>";
+        }
+        mysqli_close($conn);
+        ?>
+    </select><br>
+    Doctor:
+    <select name="doctorid">
+        <?php
+        $conn = mysqli_connect("localhost","root","","hospital_db");
+        $result = mysqli_query($conn,"SELECT DoctorID, Name FROM Doctor");
+        while($row=mysqli_fetch_assoc($result)){
+            echo "<option value='".$row['DoctorID']."'>".$row['Name']."</option>";
+        }
+        mysqli_close($conn);
+        ?>
+    </select><br>
+    Date: <input type="date" name="date"><br>
+    Time: <input type="time" name="time"><br>
+    Status: <input type="text" name="status"><br>
+    <input type="submit" value="Add Appointment">
+</form>
+<a href="index.html">Back to Home</a>
+</body>
+</html>
